@@ -1,0 +1,28 @@
+#!/bin/bash
+#set -x
+. /bin/functions
+
+if [ $# != 1 ];then
+    echo $@
+    echo "Usage: pyfile(no .py)"
+    exit
+fi
+if [[ $1 =~ ".py" ]]; then
+    pyfile=${1:0:-3}
+else
+    pyfile=$1
+fi
+
+echo -n "Cypthon $pyfile.py..."
+func "cython $pyfile.py"
+
+echo -n "Gcc $pyfile.c to $pyfile.o..."
+func "gcc -c -fPIC -I/usr/include/python2.7/ $pyfile.c"
+echo -n "Gcc $pyfile.o to $pyfile.so..."
+func "gcc -shared $pyfile.o -o $pyfile.so"
+echo -n "Strip $pyfile.so..."
+func "strip -s $pyfile.so"
+
+echo -n "Rm tmpfile..."
+func "rm $pyfile.c $pyfile.o"
+echo "Produce so file Ok!"
