@@ -1,0 +1,10 @@
+# /bin/bash
+
+#set -x
+
+
+if [ $# -eq 1 ];then
+    grep -i --colour "$1" * -Rn
+else
+    echo "Usage: string"
+fi
