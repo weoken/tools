@@ -1,8 +1,7 @@
 # tools
-bash tools for make life simple
+Tools for make life simple
 
-
+# bash
 Install bash
 
-
-sudo cp bash/* /usr/bin/
+sudo ./install.sh
