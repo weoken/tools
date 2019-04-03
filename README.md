@@ -1,5 +1,5 @@
 # tools
-Tools for make life simple
+Tools make life simple
 
 # bash
 Install bash
